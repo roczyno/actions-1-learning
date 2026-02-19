@@ -25,7 +25,7 @@ jobs:
               run: sleep 10
 
             - name: test file exists
-              run: test -f dragon.txt && echo "File exists!" || echo "File does not exist!"
+              run: grep -i "dragon" dragon.txt
 
     deploy:
         runs-on: ubuntu-latest
