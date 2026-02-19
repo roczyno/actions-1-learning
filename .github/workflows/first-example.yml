@@ -7,10 +7,16 @@ jobs:
         steps:
             - name: checkout repo
               uses: actions/checkout@v6
-            - name: welcome message
-              run: echo "Welcome to my first workflow"
+            - name: list and read files
+              run: |
+                echo "Welcome to my first workflow"
+                ls -la
+                cat README.md
 
-            - name: list files
-              run: ls -la
-            - name: Read file
-              run: cat README.md
+            - name: Generate ASCII artwork
+              run: cowsay -f dragon "Run for cover, the dragon is here!" >> dragon.txt
+
+            # - name: list files
+            #   run: ls -la
+            # - name: Read file
+            #   run: cat README.md
