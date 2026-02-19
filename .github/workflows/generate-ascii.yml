@@ -7,5 +7,8 @@ jobs:
             - name: checkout repo
               uses: actions/checkout@v6
 
+            - name: list file permissions
+              run: ls -la
+
             - name: Execute ASCII script
               run: ./ascii-script.sh
