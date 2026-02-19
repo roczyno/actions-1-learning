@@ -12,7 +12,12 @@ jobs:
 
             - name: Generate ASCII artwork
               run: cowsay -f dragon "Run for cover, the dragon is here!" >> dragon.txt
-         
+
+            - name: upload artifact
+              uses: actions/upload-artifact@v6
+              with:
+                  name: dragon-artwork
+                  path: dragon.txt
 
     test:
         runs-on: ubuntu-latest
@@ -20,6 +25,11 @@ jobs:
         steps:
             - name: checkout repo
               uses: actions/checkout@v6
+
+            - name: download artifact
+              uses: actions/download-artifact@v6
+              with:
+                  name: dragon-artwork
 
             - name: test file exists
               run: grep -i "dragon" dragon.txt
@@ -30,6 +40,11 @@ jobs:
         steps:
             - name: checkout repo
               uses: actions/checkout@v6
+
+            - name: download artifact
+              uses: actions/download-artifact@v6
+              with:
+                  name: dragon-artwork
 
             - name: display file content
               run: cat dragon.txt
