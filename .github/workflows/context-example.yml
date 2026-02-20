@@ -1,0 +1,26 @@
+name: GitHub Context Example
+
+on:
+    push:
+    pull_request:
+
+jobs:
+    show-context:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Print basic GitHub context values
+              run: |
+                  echo "Repository: ${{ github.repository }}"
+                  echo "Workflow: ${{ github.workflow }}"
+                  echo "Event name: ${{ github.event_name }}"
+                  echo "Actor: ${{ github.actor }}"
+                  echo "Branch/Ref: ${{ github.ref }}"
+                  echo "Commit SHA: ${{ github.sha }}"
+
+            - name: Print pull request number (if PR)
+              if: ${{ github.event_name == 'pull_request' }}
+              run: 'echo "PR Number: ${{ github.event.pull_request.number }}"'
+
+            - name: Print full GitHub context (for debugging)
+              run: echo '${{ toJson(github) }}'
