@@ -12,6 +12,9 @@ jobs:
                 exclude:
                     - os: windows-latest
                       images: nginx:latest
+                include:
+                    - os: windows-latest
+                      images: hello-world
         runs-on: ${{ matrix.os }}
         steps:
             - name: Deploy on ${{ matrix.os }}
